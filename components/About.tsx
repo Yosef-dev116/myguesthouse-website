@@ -19,7 +19,7 @@ export function About() {
     >
       <Container>
         <div className="grid gap-16 md:grid-cols-12 md:items-start md:gap-x-10">
-          <InViewGroup className="md:col-span-5">
+          <InViewGroup className="md:col-span-5 md:-mt-12">
             <InViewItem>
               <div className="relative aspect-square w-full overflow-hidden rounded-t-[4rem] rounded-b-xl shadow-[0_30px_60px_-30px_rgba(0,0,0,0.7)]">
                 <Image
@@ -41,7 +41,7 @@ export function About() {
               </div>
             </InViewItem>
 
-            <InViewItem className="relative z-10 mx-6 -mt-8 max-w-xs sm:mx-8 md:mx-0 md:ml-10 md:-mt-14">
+            <InViewItem className="relative z-10 mx-6 mt-6 max-w-xs sm:mx-8 sm:mt-8 md:mx-0 md:ml-10 md:-mt-8">
               <DetailCard />
             </InViewItem>
           </InViewGroup>
