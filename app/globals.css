@@ -1,26 +1,54 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+  Design tokens for My Guest House. Colors are the single source of truth —
+  adjust the hex values here to retint the whole site.
+*/
+@theme {
+  --color-charcoal: #14120f;
+  --color-charcoal-elevated: #1c1a15;
+  --color-charcoal-glass: rgba(20, 18, 15, 0.78);
+  --color-cream: #f4ede0;
+  --color-cream-muted: #b9af9c;
+  --color-brass: #b8863e;
+  --color-brass-light: #d8ab68;
+  --color-hairline: rgba(244, 237, 224, 0.12);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-charcoal);
+  color: var(--color-cream);
+}
+
+::selection {
+  background-color: var(--color-brass);
+  color: var(--color-charcoal);
+}
+
+/* Subtle film-grain texture, used sparingly to keep low-resolution imagery
+   from reading as low-resolution. Kept in CSS (not a Tailwind arbitrary
+   value) so the data URI doesn't need class-name escaping. */
+.grain-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 120px 120px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
