@@ -10,6 +10,8 @@ export const NAV_LINKS = [
 export const CONTACT = {
   phoneDisplay: "+251 908 022222",
   phoneHref: "tel:+251908022222",
+  emailDisplay: "myguesthouse011@gmail.com",
+  emailHref: "mailto:myguesthouse011@gmail.com",
   location: "Addis Ababa, Ethiopia",
   mapsHref: "https://maps.app.goo.gl/Aj6pbWoGW98avUJt9",
 } as const;

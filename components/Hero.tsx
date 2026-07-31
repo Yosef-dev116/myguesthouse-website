@@ -1,13 +1,11 @@
 import Link from "next/link";
 import { ArrowUpRight, MapPin, Phone } from "lucide-react";
-import exteriorImage from "@/public/images/exterior.jpg";
+import heroImage from "@/public/images/hero-night.jpg";
 import { Container } from "./layout/Container";
 import { HeroImage } from "./motion/HeroImage";
 import { StaggerGroup, StaggerItem } from "./motion/StaggerReveal";
 import { CONTACT } from "@/lib/site-config";
-
-const FOCUS_RING =
-  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-light focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal";
+import { FOCUS_RING } from "@/lib/ui";
 
 export function Hero() {
   return (
@@ -73,7 +71,7 @@ export function Hero() {
 
           <div className="-mx-6 sm:-mx-8 md:mx-0 md:mt-[-2rem] lg:-mr-10 xl:-mr-16">
             <HeroImage
-              src={exteriorImage}
+              src={heroImage}
               alt="My Guest House building exterior at night, with illuminated balconies and entrance signage"
               sizes="(min-width: 1024px) 38vw, (min-width: 768px) 45vw, 100vw"
               priority

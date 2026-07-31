@@ -7,9 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Logo } from "./Logo";
 import { Container } from "./layout/Container";
 import { NAV_LINKS, CONTACT } from "@/lib/site-config";
-
-const FOCUS_RING =
-  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brass-light focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal";
+import { FOCUS_RING } from "@/lib/ui";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -19,6 +17,7 @@ const NAV_LINK_BASE =
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [activeHref, setActiveHref] = useState("#top");
   const toggleRef = useRef<HTMLButtonElement>(null);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
 
@@ -27,6 +26,28 @@ export function Navbar() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const sections = NAV_LINKS
+      .map((link) => document.getElementById(link.href.slice(1)))
+      .filter((section): section is HTMLElement => section !== null);
+
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveHref(`#${entry.target.id}`);
+          }
+        }
+      },
+      { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -65,7 +86,7 @@ export function Navbar() {
           <div className="flex items-center gap-10">
             <ul className="hidden items-center gap-9 md:flex">
               {NAV_LINKS.map((link) => {
-                const isActive = link.href === "#top";
+                const isActive = link.href === activeHref;
                 return (
                   <li key={link.href}>
                     <Link
