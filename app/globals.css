@@ -43,6 +43,15 @@ body {
   background-size: 120px 120px;
 }
 
+/* Restrained coordinate-grid texture for the Contact section's location
+   panel — evokes a map without using an actual map image or embed. */
+.map-grid-overlay {
+  background-image:
+    linear-gradient(to right, rgba(244, 237, 224, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(244, 237, 224, 0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
