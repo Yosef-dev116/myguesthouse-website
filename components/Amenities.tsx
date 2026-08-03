@@ -4,6 +4,7 @@ import diningAreaImage from "@/public/images/dining-area.png";
 import { Container } from "./layout/Container";
 import { AmenityGroup, type AmenityItem } from "./AmenityGroup";
 import { InViewGroup, InViewItem } from "./motion/InView";
+import { ImageReveal } from "./motion/ImageReveal";
 import { CONTACT } from "@/lib/site-config";
 
 const IN_ROOM: AmenityItem[] = [
@@ -53,7 +54,10 @@ export function Amenities() {
         <InViewGroup className="mt-8 grid gap-10 md:mt-12 md:grid-cols-12 md:items-start md:gap-x-12">
           <InViewItem className="md:col-span-7 md:col-start-1 md:row-start-1">
             <figure className="md:max-w-[90%]">
-              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-hairline shadow-[0_30px_60px_-30px_rgba(0,0,0,0.7)]">
+              <ImageReveal
+                variant="clip-horizontal"
+                className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl border border-hairline shadow-[0_30px_60px_-30px_rgba(0,0,0,0.7)]"
+              >
                 <Image
                   src={diningAreaImage}
                   alt="The dining area at My Guest House, seen through a lattice partition with plants"
@@ -70,7 +74,7 @@ export function Amenities() {
                   aria-hidden="true"
                   className="grain-overlay pointer-events-none absolute inset-0 opacity-[0.05] mix-blend-overlay"
                 />
-              </div>
+              </ImageReveal>
               <figcaption className="mt-4 flex items-center gap-3">
                 <span aria-hidden="true" className="h-px w-6 bg-brass" />
                 <span className="font-mono text-xs uppercase tracking-[0.2em] text-cream-muted">

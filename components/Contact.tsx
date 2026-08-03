@@ -5,6 +5,7 @@ import { LocationPanel } from "./LocationPanel";
 import { InViewGroup, InViewItem } from "./motion/InView";
 import { CONTACT } from "@/lib/site-config";
 import { FOCUS_RING } from "@/lib/ui";
+import { DISTANCE } from "@/lib/motion";
 
 export function Contact() {
   return (
@@ -84,7 +85,7 @@ export function Contact() {
             </InViewItem>
           </div>
 
-          <InViewItem className="md:col-span-5">
+          <InViewItem className="md:col-span-5" distance={DISTANCE.md}>
             <LocationPanel />
           </InViewItem>
         </InViewGroup>

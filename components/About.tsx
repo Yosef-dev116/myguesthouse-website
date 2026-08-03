@@ -3,6 +3,7 @@ import lobbyImage from "@/public/images/lobby.png";
 import { Container } from "./layout/Container";
 import { DetailCard } from "./DetailCard";
 import { InViewGroup, InViewItem } from "./motion/InView";
+import { ImageReveal } from "./motion/ImageReveal";
 
 const SUPPORTING_POINTS = [
   "Warm, personal hospitality",
@@ -21,7 +22,10 @@ export function About() {
         <div className="grid gap-16 md:grid-cols-12 md:items-start md:gap-x-10">
           <InViewGroup className="md:col-span-5 md:-mt-12">
             <InViewItem>
-              <div className="relative aspect-square w-full overflow-hidden rounded-t-[4rem] rounded-b-xl shadow-[0_30px_60px_-30px_rgba(0,0,0,0.7)]">
+              <ImageReveal
+                variant="clip-soft"
+                className="relative aspect-square w-full overflow-hidden rounded-t-[4rem] rounded-b-xl shadow-[0_30px_60px_-30px_rgba(0,0,0,0.7)]"
+              >
                 <Image
                   src={lobbyImage}
                   alt="The lobby at My Guest House, with a modern glass and timber partition and greenery near the entrance"
@@ -38,7 +42,7 @@ export function About() {
                   aria-hidden="true"
                   className="grain-overlay pointer-events-none absolute inset-0 opacity-[0.05] mix-blend-overlay"
                 />
-              </div>
+              </ImageReveal>
             </InViewItem>
 
             <InViewItem className="relative z-10 mx-6 mt-6 max-w-xs sm:mx-8 sm:mt-8 md:mx-0 md:ml-10 md:-mt-8">

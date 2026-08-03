@@ -4,6 +4,7 @@ import heroImage from "@/public/images/hero-night.jpg";
 import { Container } from "./layout/Container";
 import { HeroImage } from "./motion/HeroImage";
 import { StaggerGroup, StaggerItem } from "./motion/StaggerReveal";
+import { SplitHeadline } from "./motion/SplitHeadline";
 import { CONTACT } from "@/lib/site-config";
 import { FOCUS_RING } from "@/lib/ui";
 
@@ -20,11 +21,10 @@ export function Hero() {
               </span>
             </StaggerItem>
 
-            <StaggerItem>
-              <h1 className="text-balance text-4xl font-medium leading-[1.08] tracking-tight text-cream sm:text-5xl md:text-6xl">
-                Where Comfort Meets Ethiopian Hospitality
-              </h1>
-            </StaggerItem>
+            <SplitHeadline
+              text="Where Comfort Meets Ethiopian Hospitality"
+              className="text-balance text-4xl font-medium leading-[1.08] tracking-tight text-cream sm:text-5xl md:text-6xl"
+            />
 
             <StaggerItem>
               <p className="max-w-[38ch] text-lg leading-relaxed text-cream-muted">

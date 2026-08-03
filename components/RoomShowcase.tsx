@@ -4,6 +4,8 @@ import { Phone } from "lucide-react";
 import { CONTACT } from "@/lib/site-config";
 import { FOCUS_RING } from "@/lib/ui";
 import { InViewGroup, InViewItem } from "./motion/InView";
+import { ImageReveal } from "./motion/ImageReveal";
+import { NestedStaggerList, NestedStaggerRow } from "./motion/NestedStagger";
 
 export type Room = {
   number: string;
@@ -31,7 +33,10 @@ export function RoomShowcase({
   return (
     <InViewGroup className="grid gap-8 md:grid-cols-12 md:items-start md:gap-x-12">
       <InViewItem className={`md:col-span-7 md:row-start-1 ${imageColStart}`}>
-        <div className="group relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-hairline shadow-[0_30px_60px_-30px_rgba(0,0,0,0.7)]">
+        <ImageReveal
+          variant="settle"
+          className="group relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-hairline shadow-[0_30px_60px_-30px_rgba(0,0,0,0.7)]"
+        >
           <Image
             src={room.image}
             alt={room.alt}
@@ -48,7 +53,7 @@ export function RoomShowcase({
             aria-hidden="true"
             className="grain-overlay pointer-events-none absolute inset-0 opacity-[0.05] mix-blend-overlay"
           />
-        </div>
+        </ImageReveal>
       </InViewItem>
 
       <div className={`md:col-span-5 md:row-start-1 ${textColStart} flex flex-col items-start ${textTopOffset}`}>
@@ -79,22 +84,25 @@ export function RoomShowcase({
         </InViewItem>
 
         <InViewItem className="mt-8 w-full border-t border-hairline pt-8">
-          <ul className="grid grid-cols-2 gap-x-6 gap-y-3">
+          <NestedStaggerList className="grid grid-cols-2 gap-x-6 gap-y-3">
             {room.features.map((feature) => (
-              <li key={feature} className="flex items-center gap-3">
+              <NestedStaggerRow key={feature} className="flex items-center gap-3">
                 <span aria-hidden="true" className="h-px w-3 shrink-0 bg-brass" />
                 <span className="text-sm tracking-wide text-cream-muted">{feature}</span>
-              </li>
+              </NestedStaggerRow>
             ))}
-          </ul>
+          </NestedStaggerList>
         </InViewItem>
 
         <InViewItem className="mt-9">
           <Link
             href={CONTACT.phoneHref}
-            className={`inline-flex items-center gap-2 rounded-full border border-brass/30 px-5 py-2.5 text-sm font-semibold tracking-wide text-cream shadow-sm shadow-black/10 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-brass/60 hover:bg-brass/5 ${FOCUS_RING}`}
+            className={`group inline-flex items-center gap-2 rounded-full border border-brass/30 px-5 py-2.5 text-sm font-semibold tracking-wide text-cream shadow-sm shadow-black/10 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-brass/60 hover:bg-brass/5 ${FOCUS_RING}`}
           >
-            <Phone className="h-4 w-4 text-brass" aria-hidden="true" />
+            <Phone
+              className="h-4 w-4 text-brass transition-transform duration-300 ease-out group-hover:translate-x-0.5"
+              aria-hidden="true"
+            />
             Ask About This Room
           </Link>
         </InViewItem>

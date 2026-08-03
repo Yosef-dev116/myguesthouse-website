@@ -1,6 +1,7 @@
 import type { LucideIcon } from "lucide-react";
 import { FOCUS_RING } from "@/lib/ui";
 import { InViewItem } from "./motion/InView";
+import { NestedStaggerIcon, NestedStaggerList, NestedStaggerRow } from "./motion/NestedStagger";
 
 export type AmenityItem = {
   label: string;
@@ -23,10 +24,12 @@ export function AmenityGroup({
       </InViewItem>
 
       <InViewItem className="mt-5">
-        <ul className="flex flex-col gap-3">
+        <NestedStaggerList className="flex flex-col gap-3">
           {items.map(({ label, icon: Icon, href }) => (
-            <li key={label} className="flex items-center gap-3">
-              <Icon className="h-[19px] w-[19px] shrink-0 text-brass" aria-hidden="true" />
+            <NestedStaggerRow key={label} className="flex items-center gap-3">
+              <NestedStaggerIcon>
+                <Icon className="h-[19px] w-[19px] shrink-0 text-brass" aria-hidden="true" />
+              </NestedStaggerIcon>
               {href ? (
                 <a
                   href={href}
@@ -37,9 +40,9 @@ export function AmenityGroup({
               ) : (
                 <span className="text-sm text-cream-muted">{label}</span>
               )}
-            </li>
+            </NestedStaggerRow>
           ))}
-        </ul>
+        </NestedStaggerList>
       </InViewItem>
     </div>
   );

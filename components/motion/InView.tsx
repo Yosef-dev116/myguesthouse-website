@@ -2,8 +2,7 @@
 
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import type { ReactNode } from "react";
-
-const EASE = [0.22, 1, 0.36, 1] as const;
+import { DISTANCE, DURATION, EASE, VIEWPORT_ONCE } from "@/lib/motion";
 
 const container: Variants = {
   hidden: {},
@@ -12,10 +11,12 @@ const container: Variants = {
   },
 };
 
-const item: Variants = {
-  hidden: { opacity: 0, y: 18 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
-};
+function itemVariants(distance: number): Variants {
+  return {
+    hidden: { opacity: 0, y: distance },
+    show: { opacity: 1, y: 0, transition: { duration: DURATION.base, ease: EASE } },
+  };
+}
 
 export function InViewGroup({
   children,
@@ -31,7 +32,7 @@ export function InViewGroup({
       variants={shouldReduceMotion ? undefined : container}
       initial={shouldReduceMotion ? undefined : "hidden"}
       whileInView={shouldReduceMotion ? undefined : "show"}
-      viewport={{ once: true, amount: 0.3 }}
+      viewport={VIEWPORT_ONCE}
       className={className}
     >
       {children}
@@ -42,12 +43,15 @@ export function InViewGroup({
 export function InViewItem({
   children,
   className = "",
+  distance = DISTANCE.sm,
 }: {
   children: ReactNode;
   className?: string;
+  /** Entrance travel distance in px (15-40 range). Defaults to a restrained 18px. */
+  distance?: number;
 }) {
   return (
-    <motion.div variants={item} className={className}>
+    <motion.div variants={itemVariants(distance)} className={className}>
       {children}
     </motion.div>
   );

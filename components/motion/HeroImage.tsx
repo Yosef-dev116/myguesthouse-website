@@ -10,8 +10,7 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-
-const EASE = [0.22, 1, 0.36, 1] as const;
+import { DURATION, EASE } from "@/lib/motion";
 
 export function HeroImage({
   src,
@@ -73,7 +72,7 @@ export function HeroImage({
           onPointerLeave={handlePointerLeave}
           initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 24, scale: shouldReduceMotion ? 1 : 1.04 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 0.9, delay: 0.15, ease: EASE }}
+          transition={{ duration: DURATION.slower, delay: 0.15, ease: EASE }}
           className="relative aspect-[3/4] w-full overflow-hidden rounded-none shadow-[0_40px_80px_-30px_rgba(0,0,0,0.65)] md:rounded-2xl"
         >
           <motion.div style={{ x: springX, y: springY }} className="absolute inset-[-6%]">
