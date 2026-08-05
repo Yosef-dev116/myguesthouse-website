@@ -69,11 +69,19 @@ export function Footer() {
               </ul>
             </div>
 
-            <div className="flex flex-col gap-4 border-t border-hairline pt-8 sm:flex-row sm:items-center sm:justify-between md:col-span-3">
-              <p className="text-xs text-cream-muted">
-                © 2026 My Guest House. All rights reserved.
-              </p>
-              <p className="text-xs text-cream-muted">Designed and developed with care.</p>
+            <div className="flex flex-col items-center gap-8 pt-4 md:col-span-3">
+              <span aria-hidden="true" className="flex items-center gap-3">
+                <span className="h-px w-9 bg-brass/70" />
+                <span className="h-2 w-2 rotate-45 border border-brass" />
+                <span className="h-px w-9 bg-brass/70" />
+              </span>
+
+              <div className="flex w-full flex-col gap-3 border-t border-hairline pt-6 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
+                <p className="text-xs text-cream-muted">
+                  © 2026 My Guest House. All rights reserved.
+                </p>
+                <p className="text-xs text-cream-muted">Designed and developed with care.</p>
+              </div>
             </div>
           </InViewItem>
         </InViewGroup>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Mail, Phone } from "lucide-react";
 import { Container } from "./layout/Container";
 import { LocationPanel } from "./LocationPanel";
+import { SectionBridge } from "./SectionBridge";
 import { InViewGroup, InViewItem } from "./motion/InView";
 import { CONTACT } from "@/lib/site-config";
 import { FOCUS_RING } from "@/lib/ui";
@@ -11,20 +12,22 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative scroll-mt-28 overflow-x-clip border-t border-hairline bg-charcoal-elevated py-24 sm:py-28 md:py-36"
+      className="relative scroll-mt-28 overflow-x-clip bg-charcoal py-28 sm:py-32 md:py-40"
     >
-      <Container>
-        <InViewGroup className="grid gap-14 md:grid-cols-12 md:items-start md:gap-x-12">
+      <SectionBridge tone="to-espresso" />
+
+      <Container className="relative z-10">
+        <InViewGroup className="grid gap-16 md:grid-cols-12 md:items-start md:gap-x-16">
           <div className="flex flex-col items-start gap-8 md:col-span-7">
             <InViewItem className="flex items-center gap-3">
               <span aria-hidden="true" className="h-px w-8 bg-brass" />
-              <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-cream-muted">
+              <span className="text-[11px] font-medium uppercase tracking-[0.28em] text-cream-muted">
                 Contact
               </span>
             </InViewItem>
 
             <InViewItem>
-              <h2 className="text-balance text-3xl font-medium leading-[1.15] tracking-tight text-cream sm:text-4xl md:text-5xl">
+              <h2 className="font-serif text-balance text-3xl font-medium leading-[1.15] tracking-tight text-cream sm:text-4xl md:text-5xl">
                 Plan your stay directly with us.
               </h2>
             </InViewItem>
@@ -36,25 +39,25 @@ export function Contact() {
               </p>
             </InViewItem>
 
-            <InViewItem className="flex flex-wrap items-center gap-4">
+            <InViewItem className="flex flex-wrap items-center gap-8">
               <Link
                 href={CONTACT.phoneHref}
-                className={`inline-flex items-center gap-2 rounded-full bg-brass px-6 py-3 text-sm font-semibold tracking-wide text-charcoal shadow-md shadow-black/20 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-brass-light hover:shadow-[0_10px_30px_-8px_rgba(184,134,62,0.55)] active:translate-y-0 active:scale-[0.97] ${FOCUS_RING}`}
+                className={`group inline-flex items-center border border-brass/60 px-8 py-3.5 text-[11px] font-medium uppercase tracking-[0.22em] text-cream transition-all duration-500 ease-out hover:border-brass hover:bg-brass hover:text-charcoal ${FOCUS_RING}`}
               >
-                <Phone className="h-4 w-4" aria-hidden="true" />
                 Call Now
               </Link>
               <Link
                 href={CONTACT.emailHref}
-                className={`inline-flex items-center gap-2 rounded-full border border-hairline px-6 py-3 text-sm font-semibold tracking-wide text-cream transition-all duration-300 ease-out hover:border-brass/50 hover:bg-cream/[0.03] ${FOCUS_RING}`}
+                className={`group inline-flex items-center gap-2.5 text-[11px] font-medium uppercase tracking-[0.22em] text-cream transition-colors duration-300 hover:text-brass-light ${FOCUS_RING}`}
               >
-                <Mail className="h-4 w-4 text-brass" aria-hidden="true" />
-                Email Us
+                <span className="border-b border-cream/30 pb-0.5 transition-colors group-hover:border-brass-light">
+                  Email Us
+                </span>
               </Link>
             </InViewItem>
 
-            <InViewItem className="w-full">
-              <address className="not-italic flex flex-col gap-4 border-t border-hairline pt-6 text-base">
+            <InViewItem className="w-full border-t border-cream/15 pt-6">
+              <address className="not-italic flex flex-col gap-4 text-base">
                 <div className="flex items-start gap-3">
                   <Phone className="mt-0.5 h-4 w-4 shrink-0 text-brass" aria-hidden="true" />
                   <div className="flex flex-col gap-1">

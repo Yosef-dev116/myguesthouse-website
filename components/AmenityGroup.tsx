@@ -20,7 +20,7 @@ export function AmenityGroup({
     <div>
       <InViewItem className="flex items-center gap-3">
         <span aria-hidden="true" className="h-px w-6 bg-brass" />
-        <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-brass">{title}</h3>
+        <h3 className="text-xs font-medium uppercase tracking-[0.2em] text-brass">{title}</h3>
       </InViewItem>
 
       <InViewItem className="mt-5">
@@ -28,17 +28,17 @@ export function AmenityGroup({
           {items.map(({ label, icon: Icon, href }) => (
             <NestedStaggerRow key={label} className="flex items-center gap-3">
               <NestedStaggerIcon>
-                <Icon className="h-[19px] w-[19px] shrink-0 text-brass" aria-hidden="true" />
+                <Icon className="h-[17px] w-[17px] shrink-0 text-brass" aria-hidden="true" />
               </NestedStaggerIcon>
               {href ? (
                 <a
                   href={href}
-                  className={`rounded-sm text-sm text-cream-muted transition-colors hover:text-cream ${FOCUS_RING}`}
+                  className={`rounded-sm text-sm text-charcoal/75 transition-colors hover:text-charcoal ${FOCUS_RING}`}
                 >
                   {label}
                 </a>
               ) : (
-                <span className="text-sm text-cream-muted">{label}</span>
+                <span className="text-sm text-charcoal/75">{label}</span>
               )}
             </NestedStaggerRow>
           ))}

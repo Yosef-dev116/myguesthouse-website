@@ -1,23 +1,38 @@
 @import "tailwindcss";
 
 /*
-  Design tokens for My Guest House. Colors are the single source of truth —
-  adjust the hex values here to retint the whole site.
+  Design tokens for My Guest House — editorial boutique hotel palette.
+  Colors are the single source of truth — adjust the hex values here to
+  retint the whole site. Existing token names (charcoal, cream, brass, ...)
+  are kept stable so every component that already references them (Tailwind
+  utilities like bg-charcoal, text-cream-muted, border-hairline) repaints
+  automatically; only the underlying values move to the new palette.
 */
 @theme {
-  --color-charcoal: #14120f;
-  --color-charcoal-elevated: #1c1a15;
-  --color-charcoal-glass: rgba(20, 18, 15, 0.78);
-  --color-cream: #f4ede0;
-  --color-cream-muted: #b9af9c;
-  --color-brass: #b8863e;
-  --color-brass-light: #d8ab68;
-  --color-hairline: rgba(244, 237, 224, 0.12);
+  /* Deep espresso — primary dark background */
+  --color-charcoal: #17120e;
+  /* Charcoal — secondary dark, elevated panels */
+  --color-charcoal-elevated: #211a15;
+  --color-charcoal-glass: rgba(23, 18, 14, 0.78);
+  /* Warm ivory — primary text on dark backgrounds */
+  --color-cream: #f2ebdd;
+  /* Limestone — secondary/muted text on dark backgrounds */
+  --color-cream-muted: #d9cdba;
+  /* Aged brass — primary accent */
+  --color-brass: #b8893a;
+  --color-brass-light: #ccab73;
+  --color-hairline: rgba(242, 235, 221, 0.12);
+
+  /* Named palette tokens for future light-section and accent use */
+  --color-limestone: #d9cdba;
+  --color-green: #4e5f45;
+  --color-terracotta: #8a4638;
 }
 
 @theme inline {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-playfair);
 }
 
 html {
@@ -50,6 +65,14 @@ body {
     linear-gradient(to right, rgba(244, 237, 224, 0.08) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(244, 237, 224, 0.08) 1px, transparent 1px);
   background-size: 32px 32px;
+}
+
+/* Faint geometric watermark for the ivory About section — echoes the small
+   diamond motifs used elsewhere on the site, at a low enough opacity to
+   read as texture rather than pattern. */
+.about-motif-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Crect x='34' y='34' width='12' height='12' transform='rotate(45 40 40)' fill='none' stroke='rgba(23,18,14,0.06)' stroke-width='1'/%3E%3Ccircle cx='40' cy='40' r='1.5' fill='rgba(184,137,58,0.12)'/%3E%3C/svg%3E");
+  background-size: 80px 80px;
 }
 
 @media (prefers-reduced-motion: reduce) {

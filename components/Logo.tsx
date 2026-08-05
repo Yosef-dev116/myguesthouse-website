@@ -11,15 +11,21 @@
  */
 export function Logo({
   className = "",
+  compact = false,
+  light = false,
 }: {
   className?: string;
+  /** Slightly smaller mark + wordmark, used by the navbar's tighter header. */
+  compact?: boolean;
+  /** Deep-espresso mark + wordmark, used when the logo sits over a light (ivory) background. */
+  light?: boolean;
 }) {
   return (
-    <span className={`inline-flex items-center gap-2.5 ${className}`}>
+    <span className={`inline-flex items-center ${compact ? "gap-2" : "gap-2.5"} ${className}`}>
       <svg
         viewBox="195 150 705 438"
         aria-hidden="true"
-        className="h-6 w-auto shrink-0 text-brass"
+        className={`${compact ? "h-5" : "h-6"} w-auto shrink-0 ${light ? "text-charcoal" : "text-brass"}`}
       >
         <path
           fill="currentColor"
@@ -32,7 +38,9 @@ export function Logo({
           "
         />
       </svg>
-      <span className="whitespace-nowrap text-base font-semibold tracking-wide text-cream">
+      <span
+        className={`whitespace-nowrap font-semibold tracking-wide ${light ? "text-charcoal" : "text-cream"} ${compact ? "text-sm" : "text-base"}`}
+      >
         My Guest House
       </span>
     </span>

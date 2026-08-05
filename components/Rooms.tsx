@@ -2,6 +2,7 @@ import roomDeluxe from "@/public/images/room-deluxe.png";
 import roomExecutive from "@/public/images/room-executive.png";
 import { Container } from "./layout/Container";
 import { RoomShowcase, type Room } from "./RoomShowcase";
+import { SectionBridge } from "./SectionBridge";
 import { InViewGroup, InViewItem } from "./motion/InView";
 
 const ROOMS: Room[] = [
@@ -29,20 +30,22 @@ export function Rooms() {
   return (
     <section
       id="rooms"
-      className="relative scroll-mt-28 overflow-x-clip border-t border-hairline bg-charcoal py-24 sm:py-28 md:py-36"
+      className="relative scroll-mt-28 overflow-x-clip bg-charcoal py-28 sm:py-32 md:py-40"
     >
-      <Container>
+      <SectionBridge tone="to-espresso" />
+
+      <Container className="relative z-10">
         <InViewGroup>
           <InViewItem className="flex items-center gap-3">
             <span aria-hidden="true" className="h-px w-8 bg-brass" />
-            <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-cream-muted">
+            <span className="text-[11px] font-medium uppercase tracking-[0.28em] text-cream-muted">
               Rooms
             </span>
           </InViewItem>
 
           <div className="mt-6 grid gap-8 md:grid-cols-12 md:items-end md:gap-x-12">
             <InViewItem className="md:col-span-7 lg:col-span-8">
-              <h2 className="text-balance text-3xl font-medium leading-[1.15] tracking-tight text-cream sm:text-4xl md:text-5xl">
+              <h2 className="font-serif text-balance text-3xl font-medium leading-[1.15] tracking-tight text-cream sm:text-4xl md:text-5xl">
                 Spaces designed for quiet, comfortable stays.
               </h2>
             </InViewItem>
@@ -56,7 +59,7 @@ export function Rooms() {
           </div>
         </InViewGroup>
 
-        <div className="mt-14 flex flex-col gap-24 md:mt-16 md:gap-32">
+        <div className="mt-16 flex flex-col gap-24 md:mt-20 md:gap-32">
           <RoomShowcase room={ROOMS[0]} featured />
           <RoomShowcase room={ROOMS[1]} reverse />
         </div>

@@ -25,17 +25,21 @@ export function RoomShowcase({
   reverse?: boolean;
   featured?: boolean;
 }) {
-  const imageColStart = reverse ? "md:col-start-6" : "md:col-start-1";
-  const textColStart = reverse ? "md:col-start-1" : "md:col-start-8";
-  const focusPosition = featured ? "object-[50%_60%]" : "object-[50%_48%]";
-  const textTopOffset = reverse ? "" : "md:pt-10";
+  const imageSpan = featured ? "md:col-span-7" : "md:col-span-6";
+  const textSpan = featured ? "md:col-span-5" : "md:col-span-6";
+  const imageColStart = reverse ? "md:col-start-7" : "md:col-start-1";
+  const textColStart = reverse ? "md:col-start-1" : featured ? "md:col-start-8" : "md:col-start-7";
+  const aspect = featured ? "aspect-[16/11]" : "aspect-[4/5]";
+  const focusPosition = featured ? "object-[50%_58%]" : "object-[50%_46%]";
+  const rowAlign = featured ? "md:items-start" : "md:items-center";
+  const textTopOffset = featured ? "md:pt-10" : "";
 
   return (
-    <InViewGroup className="grid gap-8 md:grid-cols-12 md:items-start md:gap-x-12">
-      <InViewItem className={`md:col-span-7 md:row-start-1 ${imageColStart}`}>
+    <InViewGroup className={`grid gap-8 md:grid-cols-12 md:gap-x-12 ${rowAlign}`}>
+      <InViewItem className={`${imageSpan} md:row-start-1 ${imageColStart}`}>
         <ImageReveal
           variant="settle"
-          className="group relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-hairline shadow-[0_30px_60px_-30px_rgba(0,0,0,0.7)]"
+          className={`group relative ${aspect} w-full overflow-hidden rounded-xl`}
         >
           <Image
             src={room.image}
@@ -43,26 +47,26 @@ export function RoomShowcase({
             fill
             sizes="(min-width: 768px) 55vw, 100vw"
             placeholder="blur"
-            className={`object-cover ${focusPosition} transition-transform duration-700 ease-out group-hover:scale-105`}
-          />
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-charcoal/60 via-transparent to-transparent"
-          />
-          <div
-            aria-hidden="true"
-            className="grain-overlay pointer-events-none absolute inset-0 opacity-[0.05] mix-blend-overlay"
+            className={`object-cover ${focusPosition} transition-transform duration-700 ease-out group-hover:scale-[1.03]`}
           />
         </ImageReveal>
       </InViewItem>
 
-      <div className={`md:col-span-5 md:row-start-1 ${textColStart} flex flex-col items-start ${textTopOffset}`}>
+      <div
+        className={`${textSpan} md:row-start-1 ${textColStart} ${textTopOffset} relative flex flex-col items-start`}
+      >
+        {featured && (
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute -top-6 left-0 -z-10 select-none font-serif text-[5.5rem] leading-none text-brass/15 md:text-[7rem]"
+          >
+            {room.number}
+          </span>
+        )}
+
         <InViewItem className="flex items-center gap-3">
-          {reverse ? (
-            <>
-              <span aria-hidden="true" className="h-px w-8 bg-brass" />
-              <span className="font-mono text-sm text-brass">{room.number}</span>
-            </>
+          {featured ? (
+            <span aria-hidden="true" className="h-px w-8 bg-brass" />
           ) : (
             <>
               <span className="font-mono text-sm text-brass">{room.number}</span>
@@ -71,36 +75,37 @@ export function RoomShowcase({
           )}
         </InViewItem>
 
-        <InViewItem className="mt-6">
-          <h3 className="text-2xl font-medium tracking-tight text-cream md:text-3xl">
+        <InViewItem className="mt-5">
+          <h3 className="font-serif text-2xl font-medium tracking-tight text-cream md:text-3xl">
             {room.title}
           </h3>
         </InViewItem>
 
-        <InViewItem className="mt-8">
-          <p className="max-w-md text-base leading-relaxed text-cream-muted">
-            {room.description}
-          </p>
+        <InViewItem className="mt-6">
+          <p className="max-w-md text-base leading-relaxed text-cream-muted">{room.description}</p>
         </InViewItem>
 
-        <InViewItem className="mt-8 w-full border-t border-hairline pt-8">
+        <InViewItem className="mt-7 w-full">
           <NestedStaggerList className="grid grid-cols-2 gap-x-6 gap-y-3">
             {room.features.map((feature) => (
-              <NestedStaggerRow key={feature} className="flex items-center gap-3">
+              <NestedStaggerRow
+                key={feature}
+                className="flex items-center gap-2 text-sm tracking-wide text-cream-muted"
+              >
                 <span aria-hidden="true" className="h-px w-3 shrink-0 bg-brass" />
-                <span className="text-sm tracking-wide text-cream-muted">{feature}</span>
+                {feature}
               </NestedStaggerRow>
             ))}
           </NestedStaggerList>
         </InViewItem>
 
-        <InViewItem className="mt-9">
+        <InViewItem className="mt-8">
           <Link
             href={CONTACT.phoneHref}
-            className={`group inline-flex items-center gap-2 rounded-full border border-brass/30 px-5 py-2.5 text-sm font-semibold tracking-wide text-cream shadow-sm shadow-black/10 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-brass/60 hover:bg-brass/5 ${FOCUS_RING}`}
+            className={`group inline-flex items-center gap-2.5 border border-brass/50 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.18em] text-cream transition-all duration-300 ease-out hover:border-brass hover:bg-brass hover:text-charcoal ${FOCUS_RING}`}
           >
             <Phone
-              className="h-4 w-4 text-brass transition-transform duration-300 ease-out group-hover:translate-x-0.5"
+              className="h-3.5 w-3.5 transition-transform duration-300 ease-out group-hover:translate-x-0.5"
               aria-hidden="true"
             />
             Ask About This Room
